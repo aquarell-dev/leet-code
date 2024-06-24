@@ -3,13 +3,21 @@ package main
 import "fmt"
 
 func twoSum(nums []int, target int) []int {
-	for i, firstNum := range nums {
-		for j, secondNum := range nums {
-			if secondNum+firstNum == target && i != j {
-				return []int{i, j}
-			}
+	indexes := make(map[int]int, len(nums))
+
+	for i, num := range nums {
+		left := target - num
+
+		value, exists := indexes[left]
+
+		if !exists {
+			indexes[num] = i
+			continue
 		}
+
+		return []int{i, value}
 	}
+
 	return make([]int, 2)
 }
 
