@@ -2,15 +2,32 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func isPalindrome(x int) bool {
-	fmt.Println(math.Floor(math.Log10(float64(x)) + 1))
+	if x < 0 {
+		return false
+	}
 
-	return true
+	if x == 0 {
+		return true
+	}
+
+	var reversed int
+	temp := x
+
+	for {
+		if temp == 0 {
+			break
+		}
+
+		reversed = reversed*10 + (temp % 10)
+		temp /= 10
+	}
+
+	return reversed == x
 }
 
 func main() {
-	fmt.Println(isPalindrome(121))
+	fmt.Println(isPalindrome(131))
 }
